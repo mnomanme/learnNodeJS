@@ -5,6 +5,7 @@ const http = require('http');
 const server = http.createServer((req, res) => {
 	// writeFile
 	if (req.url === '/') {
+		// Asynchronous
 		fs.writeFile('index.txt', 'Welcome to Node JS', (err, data) => {
 			if (err) {
 				res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -16,6 +17,20 @@ const server = http.createServer((req, res) => {
 				res.end();
 			}
 		});
+
+		// Synchronous
+		/*
+		const fileError = fs.writeFileSync('demo.txt', 'Welcome to Node JS 2');
+		if (fileError) {
+			res.writeHead(200, { 'Content-Type': 'text/html' });
+			res.write('File write Fail');
+			res.end();
+		} else {
+			res.writeHead(200, { 'Content-Type': 'text/html' });
+			res.write('File write Success');
+			res.end();
+		}
+    */
 	}
 
 	// readFile
