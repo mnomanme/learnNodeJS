@@ -1,4 +1,7 @@
+const { write } = require('fs');
 const http = require('http');
+const { createServer } = require('https');
+const url = require('url');
 
 const server = http.createServer((req, res) => {
 	if (req.url === '/') {
@@ -15,7 +18,18 @@ const server = http.createServer((req, res) => {
 		res.end();
 	}
 
-	res.end('Hello Node JS World!');
+	const myUrl = `https://mern.rabbil.com/Tutorials/Node-JS-Fundamental/Node%20JS%20Fundamental?dictionary/query`;
+	const myUrlObj = url.parse(myUrl, true);
+
+	const myHostName = myUrlObj.host;
+	const myPathName = myUrlObj.pathname;
+	const mySearchName = myUrlObj.search;
+
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+	res.write(mySearchName);
+	res.end();
+
+	// res.end('Hello Node JS World!');
 });
 
 server.listen('5000');
