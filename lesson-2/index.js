@@ -10,6 +10,14 @@ const server = http.createServer((req, res) => {
 			res.write(data);
 			res.end();
 		});
+
+		// Synchronous
+		/*
+		const myData = fs.readFileSync('./index.html');
+		res.writeHead(200, { 'Content-Type': 'text/html' });
+		res.write(myData);
+		res.end();
+    */
 	}
 });
 
