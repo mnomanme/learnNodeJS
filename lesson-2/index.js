@@ -3,21 +3,36 @@ const fs = require('fs');
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-	// writeFile
+	// renameFile
 	if (req.url === '/') {
 		// Asynchronous
-		fs.writeFile('index.txt', 'Welcome to Node JS', (err, data) => {
+		fs.rename('./homeNew.txt', 'homeNew2.txt', (err, data) => {
 			if (err) {
 				res.writeHead(200, { 'Content-Type': 'text/html' });
-				res.write('File write Fail');
+				res.write('Rename file Fail');
 				res.end();
 			} else {
 				res.writeHead(200, { 'Content-Type': 'text/html' });
-				res.write('File write Success');
+				res.write('Rename file Success');
 				res.end();
 			}
 		});
+	}
 
+	// writeFile
+	if (req.url === '/') {
+		// Asynchronous
+		// fs.writeFile('index.txt', 'Welcome to Node JS', (err, data) => {
+		// 	if (err) {
+		// 		res.writeHead(200, { 'Content-Type': 'text/html' });
+		// 		res.write('File write Fail');
+		// 		res.end();
+		// 	} else {
+		// 		res.writeHead(200, { 'Content-Type': 'text/html' });
+		// 		res.write('File write Success');
+		// 		res.end();
+		// 	}
+		// });
 		// Synchronous
 		/*
 		const fileError = fs.writeFileSync('demo.txt', 'Welcome to Node JS 2');
