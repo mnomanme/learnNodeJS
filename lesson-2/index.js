@@ -3,6 +3,26 @@ const fs = require('fs');
 const http = require('http');
 
 const server = http.createServer((req, res) => {
+	// existsFile
+	if (req.url === '/') {
+		// Asynchronous
+		fs.exists('./index.html', (err, data) => {
+			if (err) {
+				res.end('True');
+			} else {
+				res.end('False');
+			}
+		});
+
+		// Synchronous
+		const exists = fs.existsSync('./demo.txt');
+		if (exists) {
+			res.end('File is already exists');
+		} else {
+			res.end('File not Found');
+		}
+	}
+
 	// deleteFile
 	if (req.url === '/') {
 		// Asynchronous
