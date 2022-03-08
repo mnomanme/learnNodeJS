@@ -39,5 +39,32 @@ client.connect(() => {
 		});
 	console.log('Data delete success');
 
+	// deleteMany
+	collection
+		.deleteMany()
+		.then((result) => {
+			console.log(result);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
+	console.log('delete all data');
+
+	// findOne
+	const findOne = {};
+	collection
+		.findOne(findOne)
+		.then((result) => {
+			console.log(result);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
+	// findAll
+	collection.find({}).toArray((err, documents) => {
+		console.log(documents);
+	});
 	// client.close();
 });
