@@ -1,8 +1,3 @@
-// username === merndb-learn
-// password === ns81vrzfd4uytmay
-// DB Name === merndb
-// DB Collection === dbList
-
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const uri = `mongodb+srv://merndb-learn:ns81vrzfd4uytmay@cluster0.cy70y.mongodb.net/merndb?retryWrites=true&w=majority`;
@@ -13,7 +8,7 @@ client.connect(() => {
 	const collection = client.db('merndb').collection('dbList');
 
 	console.log('DB connect successfully');
-
+	/*
 	// insertData
 	const dataList = { name: 'Mehe Sultana', age: 20, District: 'Sylhet' };
 
@@ -66,5 +61,16 @@ client.connect(() => {
 	collection.find({}).toArray((err, documents) => {
 		console.log(documents);
 	});
+	*/
+
+	// projection
+	collection.find({ age: 20 }).toArray((err, documents) => {
+		console.log(err, documents);
+	});
 	// client.close();
 });
+
+// username === merndb-learn
+// password === ns81vrzfd4uytmay
+// DB Name === merndb
+// DB Collection === dbList
