@@ -93,7 +93,7 @@ client.connect(() => {
 		.toArray((err, documents) => {
 			console.log(documents);
 		});
-			*/
+		
 
 	// update
 	const oldData = { age: 20 };
@@ -101,6 +101,15 @@ client.connect(() => {
 	collection.updateOne(oldData, newData, (err, documents) => {
 		console.log(documents);
 	});
+
+		
+
+	// createNewCollection
+	const newCollection = client.db('merndb');
+	newCollection.createCollection('students', (err, result) => {
+		console.log(result);
+	});
+*/
 	// client.close();
 });
 
