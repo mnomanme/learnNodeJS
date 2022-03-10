@@ -1,16 +1,18 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const uri = `mongodb+srv://merndb-learn:ns81vrzfd4uytmay@cluster0.cy70y.mongodb.net/merndb?retryWrites=true&w=majority`;
+require('dotenv').config();
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.cy70y.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 client.connect(() => {
-	const collection = client.db('merndb').collection('dbList');
+	const collection = client.db(`${process.env.DB_NAME}`).collection(`${process.env.DB_Collection}`);
 
 	console.log('DB connect successfully');
 
 	// insertData
-	const dataList = { name: 'Mehe Sultana', age: 20, District: 'Sylhet' };
+	const dataList = { name: 'Sezan', age: 26, District: 'Mymenshing' };
 
 	collection
 		.insertOne(dataList)
@@ -102,23 +104,18 @@ client.connect(() => {
 	});
 
 	// createNewCollection
-	const newCollection = client.db('merndb');
+	const newCollection = client.db(`${process.env.DB_NAME}`);
 
-	newCollection.createCollection('students', (err, result) => {
+	newCollection.createCollection(`${process.env.DB_New_Collection}`, (err, result) => {
 		console.log(result);
 	});
 
 	// deleteCollection
-	const deleteCollection = client.db('merndb');
+	const deleteCollection = client.db(`${process.env.DB_NAME}`);
 
-	deleteCollection.dropCollection('students', (err, result) => {
+	deleteCollection.dropCollection(`${process.env.DB_New_Collection}`, (err, result) => {
 		console.log(result);
 	});
 
 	// client.close();
 });
-
-// username === merndb-learn
-// password === ns81vrzfd4uytmay
-// DB Name === merndb
-// DB Collection === dbList
