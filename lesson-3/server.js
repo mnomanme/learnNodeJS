@@ -8,6 +8,7 @@ client.connect(() => {
 	const collection = client.db('merndb').collection('dbList');
 
 	console.log('DB connect successfully');
+
 	/*
 	// insertData
 	const dataList = { name: 'Mehe Sultana', age: 20, District: 'Sylhet' };
@@ -64,9 +65,18 @@ client.connect(() => {
 	*/
 
 	// projection
-	collection.find({ age: 20 }).toArray((err, documents) => {
-		console.log(err, documents);
+	// const itemProjection = {};
+	// const itemObj = { projection: { District: 1 } };
+	// collection.find(itemProjection, itemObj).toArray((err, documents) => {
+	// 	console.log(documents);
+	// });
+
+	// query
+	const itemQuery = { District: 'Dhaka', age: 20 };
+	collection.find(itemQuery).toArray((err, documents) => {
+		console.log(documents);
 	});
+
 	// client.close();
 });
 
