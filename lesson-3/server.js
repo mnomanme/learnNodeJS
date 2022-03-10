@@ -9,7 +9,6 @@ client.connect(() => {
 
 	console.log('DB connect successfully');
 
-	/*
 	// insertData
 	const dataList = { name: 'Mehe Sultana', age: 20, District: 'Sylhet' };
 
@@ -62,21 +61,21 @@ client.connect(() => {
 	collection.find({}).toArray((err, documents) => {
 		console.log(documents);
 	});
-	
 
 	// projection
 	const itemProjection = {};
 	const itemObj = { projection: { District: 1 } };
+
 	collection.find(itemProjection, itemObj).toArray((err, documents) => {
 		console.log(documents);
 	});
 
 	// query
 	const itemQuery = { District: 'Dhaka', age: 20 };
+
 	collection.find(itemQuery).toArray((err, documents) => {
 		console.log(documents);
 	});
-
 
 	// limit
 	collection
@@ -93,23 +92,29 @@ client.connect(() => {
 		.toArray((err, documents) => {
 			console.log(documents);
 		});
-		
 
 	// update
 	const oldData = { age: 20 };
 	const newData = { $set: { name: 'Mohammad Noman', District: 'Rajshahi' } };
+
 	collection.updateOne(oldData, newData, (err, documents) => {
 		console.log(documents);
 	});
 
-		
-
 	// createNewCollection
 	const newCollection = client.db('merndb');
+
 	newCollection.createCollection('students', (err, result) => {
 		console.log(result);
 	});
-*/
+
+	// deleteCollection
+	const deleteCollection = client.db('merndb');
+
+	deleteCollection.dropCollection('students', (err, result) => {
+		console.log(result);
+	});
+
 	// client.close();
 });
 
