@@ -62,14 +62,14 @@ client.connect(() => {
 	collection.find({}).toArray((err, documents) => {
 		console.log(documents);
 	});
-	*/
+	
 
 	// projection
-	// const itemProjection = {};
-	// const itemObj = { projection: { District: 1 } };
-	// collection.find(itemProjection, itemObj).toArray((err, documents) => {
-	// 	console.log(documents);
-	// });
+	const itemProjection = {};
+	const itemObj = { projection: { District: 1 } };
+	collection.find(itemProjection, itemObj).toArray((err, documents) => {
+		console.log(documents);
+	});
 
 	// query
 	const itemQuery = { District: 'Dhaka', age: 20 };
@@ -77,6 +77,30 @@ client.connect(() => {
 		console.log(documents);
 	});
 
+
+	// limit
+	collection
+		.find()
+		.limit(3)
+		.toArray((err, documents) => {
+			console.log(documents);
+		});
+
+	// sort
+	collection
+		.find()
+		.sort({ age: -1 })
+		.toArray((err, documents) => {
+			console.log(documents);
+		});
+			*/
+
+	// update
+	const oldData = { age: 20 };
+	const newData = { $set: { name: 'Mohammad Noman', District: 'Rajshahi' } };
+	collection.updateOne(oldData, newData, (err, documents) => {
+		console.log(documents);
+	});
 	// client.close();
 });
 
