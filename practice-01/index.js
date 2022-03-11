@@ -27,3 +27,20 @@ console.log(data.toString());
 fs.readFile('myFile.txt', (err, data) => {
 	console.log(data.toString());
 });
+
+// event
+
+const EventEmitter = require('events');
+
+const emitter = new EventEmitter();
+
+// register a listener for bellRing event
+emitter.on('bellRing', ({ period, text }) => {
+	console.log(`we need to run ${period} ${text}`);
+});
+
+// raise an event
+emitter.emit('bellRing', {
+	period: 'first',
+	text: 'period ended',
+});
