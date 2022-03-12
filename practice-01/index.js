@@ -44,3 +44,14 @@ emitter.emit('bellRing', {
 	period: 'first',
 	text: 'period ended',
 });
+
+// another file extending event emmit
+const startPeriod = require('./school');
+
+const school = new startPeriod();
+
+school.on('bellRing', ({ period, text }) => {
+	console.log(`we need to run ${period} ${text}`);
+});
+
+school.startPeriod();
