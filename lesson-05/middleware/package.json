@@ -1,0 +1,15 @@
+{
+	"name": "middleware",
+	"version": "1.0.0",
+	"description": "middleware",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"author": "Mohammad Noman",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.3"
+	}
+}
